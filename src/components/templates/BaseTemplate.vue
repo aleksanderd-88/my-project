@@ -6,6 +6,9 @@
     <main class="container__content">
       <slot />
     </main>
+    <footer>
+      <slot name="footer" />
+    </footer>
   </div>
 </template>
 

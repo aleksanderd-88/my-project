@@ -3,7 +3,12 @@
     <template #header>
       <TheAppBar />
     </template>
+
     <router-view />
+
+    <template #footer>
+      <TheAppSearchBar />
+    </template>
   </BaseTemplate>
 </template>
 
@@ -11,12 +16,13 @@
 import BaseTemplate from '@/components/templates/BaseTemplate.vue'
 import TheAppBar from '@/components/organisms/TheAppBar.vue'
 import { defineComponent } from 'vue'
+import TheAppSearchBar from '@/components/organisms/TheAppSearchBar.vue'
 
 export default defineComponent({
   
   name: 'AppLayout',
 
-  components: { BaseTemplate, TheAppBar },
+  components: { BaseTemplate, TheAppBar, TheAppSearchBar },
 
   setup () {
     return {}
