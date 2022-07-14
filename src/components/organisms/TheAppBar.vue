@@ -28,6 +28,7 @@ export default defineComponent({
     left: 0;
     right: 0;
     width: 100%;
+    background-color: #fff;
     box-shadow: 0 2px 8px rgba(#000, .1);
 
     &__content {
