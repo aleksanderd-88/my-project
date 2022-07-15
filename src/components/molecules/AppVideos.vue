@@ -44,6 +44,14 @@ export default defineComponent({
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: .5em;
+
+      @media screen and (min-width: 600px) {
+        grid-template-columns: repeat(4, 1fr);
+      }
+
+      @media screen and (min-width: 900px) {
+        grid-template-columns: repeat(5, 1fr);
+      }
     }
   }
 </style>
