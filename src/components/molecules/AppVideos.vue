@@ -50,6 +50,7 @@ export default defineComponent({
       }
 
       @media screen and (min-width: 900px) {
+        gap: 1em .5em;
         grid-template-columns: repeat(5, 1fr);
       }
     }
