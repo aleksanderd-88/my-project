@@ -58,7 +58,6 @@ export default defineComponent({
       width: 100%;
       padding: 0 20px;
       outline: none;
-      border-radius: 4px;
       font-size: .9rem;
       border: none;
       border-bottom: 1px solid #eee;;
