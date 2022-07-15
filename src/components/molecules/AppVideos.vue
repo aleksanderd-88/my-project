@@ -1,21 +1,27 @@
 <template>
   <div class="videos">
-    <AppVideoItem 
-      v-for="video in videos" 
-      :key="video.id" 
-      :video="video" 
-    />
+    <div class="videos__list">
+      <AppVideoItem 
+        v-for="video in videos" 
+        :key="video.id" 
+        :video="video" 
+      />
+    </div>
+
+    <AppPaginationButton />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import AppPaginationButton from './AppPaginationButton.vue'
 import AppVideoItem from './AppVideoItem.vue'
 
 export default defineComponent({
-  components: { AppVideoItem },
-
+  
   name: 'AppVideos',
+
+  components: { AppVideoItem, AppPaginationButton },
 
   props: {
     videos: {
@@ -33,8 +39,11 @@ export default defineComponent({
 
 <style lang="scss" scoped>
   .videos {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: .5em;
+    
+    &__list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: .5em;
+    }
   }
 </style>

@@ -8,7 +8,7 @@ const options = {
 const client = axios.create(options)
 
 export default {
-  fetchVideos(query = 'blowjob', page = 1): Promise<AxiosResponse> {
+  fetchVideos(query: string, page = 1): Promise<AxiosResponse> {
     return client.get(`/video/search/?query=${query}&page=${page}`)
   }
 }
