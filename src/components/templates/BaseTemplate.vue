@@ -32,7 +32,7 @@ export default defineComponent({
     &__content {
       width: inherit;
       max-width: 1440px;
-      margin: 4rem auto 0;
+      margin: 4rem auto 6rem;
       padding: 0 1em;
     }
   }
