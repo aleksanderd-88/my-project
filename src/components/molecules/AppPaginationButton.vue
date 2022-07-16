@@ -49,11 +49,16 @@ export default defineComponent({
     background-color: #222;
     color: #fff;
     height: 50px;
+    display: block;
     border-radius: 3px;
-    margin-top: 2rem;
+    margin: 2rem auto;
     font-size: .65rem;
     font-weight: 600;
     letter-spacing: .05em;
     text-transform: uppercase;
+
+    @media screen and (min-width: 600px) {
+      width: 300px;
+    }
   }
 </style>
