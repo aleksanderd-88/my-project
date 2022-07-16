@@ -37,7 +37,10 @@ export default defineComponent({
       videos.value = data.videos
       store.dispatch('videos/setResultData', data)
     })
-
+    .catch((error) => {
+      console.log('An error occured, reason ::', error)
+    })
+    
     watch(() => page.value, (val) => {
       if(val) {
         router.push({ name: route.name?.toString(), query: { page: page.value.toString() } })

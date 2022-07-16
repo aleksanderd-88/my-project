@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import Home from '@/pages/HomeView.vue'
+import { computed } from '@vue/reactivity'
 import store from '@/store'
 
 const routes: Array<RouteRecordRaw> = [
@@ -25,7 +26,8 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  if(store.state.isLoading) {
+  const isLoading = computed(() => store.state.isLoading)
+  if(isLoading.value) {
     next(false)
   } else {
     next()
