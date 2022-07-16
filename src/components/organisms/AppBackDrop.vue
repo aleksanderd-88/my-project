@@ -1,5 +1,5 @@
 <template>
-  <div class="back-drop" :class="modifyClass" @click.self="$emit('hide')" />
+  <div class="back-drop mobile-only" :class="modifyClass" @click.self="$emit('hide')" />
 </template>
 
 <script lang="ts">
