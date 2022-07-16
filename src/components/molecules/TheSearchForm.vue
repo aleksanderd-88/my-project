@@ -20,6 +20,7 @@
 
 <script lang="ts">
 import { defineComponent, ref, watch } from 'vue'
+import { useRouter } from 'vue-router'
 
 export default defineComponent({
 
@@ -38,6 +39,7 @@ export default defineComponent({
     const tags = ref<string[]>(['Anal', ' Bukkake', ' Facials', ' Cumshots'])
     const inputRef = ref()
     const query = ref('')
+    const router = useRouter()
 
     watch(() => props.isVisible, (val: boolean) => {
       if(val) {
@@ -51,7 +53,7 @@ export default defineComponent({
 
     const onQuerySubmit = () => {
       if(!query.value) return
-      console.log(query.value)
+      router.push({ name: 'SearchResult', params: { query: query.value.toString() } })
       clearInput()
     }
 

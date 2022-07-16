@@ -8,11 +8,11 @@ const routes: Array<RouteRecordRaw> = [
     name: 'Home',
     component: Home
   },
-  // {
-  //   path: '/about',
-  //   name: 'About',
-  //   component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  // }
+  {
+    path: '/:query?/:page?',
+    name: 'SearchResult',
+    component: () => import(/* webpackChunkName: "searchResult" */ '@/pages/SearchResultView.vue')
+  }
 ]
 
 const router = createRouter({

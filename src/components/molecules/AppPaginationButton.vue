@@ -23,7 +23,14 @@ export default defineComponent({
 
     // navigate to current route and set current page = (current page + 1)
     const showRelevantVideos = () => {
-      router.push({ name: route.name?.toString(), query: { page: page.value + 1} })
+      router.push({ name: route.name?.toString(), 
+        params: { 
+          query: route.params.query?.toString()
+        }, 
+        query: { 
+          page: page.value + 1
+        } 
+      })
     }
 
     const isLoading = computed(() => store.state.isLoading)
