@@ -7,7 +7,7 @@
           >
           <i :class="`fa-solid ${searchFormVisible ? 'fa-xmark' : 'fa-magnifying-glass'}`"></i>
         </button>
-        <TheSearchForm class="search-bar__form" :class="modifyClass" :isVisible="searchFormVisible" />
+        <TheSearchForm class="search-bar__form mobile" :class="modifyClass" :isVisible="searchFormVisible" />
       </main>
     </div>
   <AppBackDrop :backDropVisible="searchFormVisible" @hide="searchFormVisible = false" />

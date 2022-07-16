@@ -2,6 +2,7 @@
   <nav class="bar">
     <main class="bar__content">
       <TheAppLogoButton />
+      <TheSearchForm class="computer computer-only" />
     </main>
   </nav>
 </template>
@@ -9,9 +10,10 @@
 <script lang="ts">
 import TheAppLogoButton from '@/components/atoms/TheAppLogoButton.vue'
 import { defineComponent } from 'vue'
+import TheSearchForm from '../molecules/TheSearchForm.vue'
 
 export default defineComponent({
-  components: { TheAppLogoButton },
+  components: { TheAppLogoButton, TheSearchForm },
 
   name: 'TheAppBar',
 
