@@ -14,7 +14,8 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, ref } from 'vue'
+import { computed, defineComponent, ref, watch } from 'vue'
+import { useRoute } from 'vue-router'
 import TheSearchForm from '../molecules/TheSearchForm.vue'
 import AppBackDrop from './AppBackDrop.vue'
 
@@ -27,6 +28,7 @@ export default defineComponent({
   setup () {
 
     const searchFormVisible = ref(false)
+    const route = useRoute()
 
     const toggleSearchForm = () => {
       searchFormVisible.value = !searchFormVisible.value
@@ -34,6 +36,10 @@ export default defineComponent({
 
     const modifyClass = computed(() => {
       return searchFormVisible.value && 'search-bar__form--visible'
+    })
+
+    watch(() => route.params.query?.toString(), (val) => {
+      searchFormVisible.value = false
     })
 
     return {
