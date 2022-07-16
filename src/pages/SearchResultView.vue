@@ -1,6 +1,6 @@
 <template>
   <div>
-    <AppHeadline :headline="searchQuery" />
+    <AppHeadline :headline="firstLetterToUpper(searchQuery)" />
     <AppVideos :videos="videos" />
   </div>
 </template>
@@ -12,6 +12,7 @@ import API from '@/services/api'
 import { computed, defineComponent, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useStore } from 'vuex'
+import { firstLetterToUpper } from '@/utils/useTextFormatter'
 
 export default defineComponent({
 
@@ -50,7 +51,8 @@ export default defineComponent({
 
     return {
       searchQuery,
-      videos
+      videos,
+      firstLetterToUpper
     }
   }
 })
