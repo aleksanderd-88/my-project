@@ -39,7 +39,9 @@ export default defineComponent({
     })
 
     watch(() => route.params.query?.toString(), (val) => {
-      searchFormVisible.value = false
+      if(val) {
+        searchFormVisible.value = false
+      }
     })
 
     return {
