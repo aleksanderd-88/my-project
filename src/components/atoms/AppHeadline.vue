@@ -26,7 +26,7 @@ export default defineComponent({
 
 <style lang="scss" scoped>
   .headline {
-    padding: 2rem 0;
+    padding: 2rem 0 .5em;
     font-size: 1.3rem;
     transition: font-size .2s ease;
 
