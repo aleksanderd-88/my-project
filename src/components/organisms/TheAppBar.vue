@@ -1,7 +1,7 @@
 <template>
   <nav class="bar">
     <main class="bar__content">
-      <TheAppLogoButton />
+      <TheAppLogoButton class="bar__logo" />
       <TheSearchForm class="computer computer-only" />
     </main>
   </nav>
@@ -41,6 +41,10 @@ export default defineComponent({
       display: flex;
       padding: 0 1em;
       align-items: center;
+    }
+
+    &__logo {
+      width: 200px;
     }
   }
 </style>

@@ -123,7 +123,7 @@ export default defineComponent({
         transform: translateY(-50%);
 
         i {
-          color: #c1c1c1;
+          color: #555;
         }
       }
 
@@ -142,7 +142,7 @@ export default defineComponent({
           text-transform: uppercase;
           letter-spacing: .04em;
           font-weight: 400;
-          color: #c1c1c1;
+          color: #555;
         }
       }
     }
