@@ -9,8 +9,8 @@
 import AppHeadline from '@/components/atoms/AppHeadline.vue'
 import AppVideos from '@/components/molecules/AppVideos.vue'
 import API from '@/services/api'
-import { computed, defineComponent, ref, watch } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
+import { computed, defineComponent, ref } from 'vue'
+import { useRoute } from 'vue-router'
 import { useStore } from 'vuex'
 import { firstLetterToUpper } from '@/utils/useTextFormatter'
 
@@ -25,7 +25,6 @@ export default defineComponent({
 
   setup () {
     const route = useRoute()
-    const router = useRouter()
     const store = useStore()
     const page = ref(Number(route.query.page?.toString()) || 1)
 
@@ -39,14 +38,6 @@ export default defineComponent({
     })
     .catch((error) => {
       console.log('An error occured, reason ::', error)
-    })
-
-    watch(() => page.value, (val) => {
-      if(val) {
-        router.push({ name: route.name?.toString(), query: { page: page.value.toString() } })
-      } else {
-        return
-      }
     })
 
     return {

@@ -8,10 +8,10 @@
 <script lang="ts">
 import AppHeadline from '@/components/atoms/AppHeadline.vue'
 import AppVideos from '@/components/molecules/AppVideos.vue'
-import { defineComponent, ref, watch } from 'vue'
+import { computed, defineComponent, ref } from 'vue'
 import API from '@/services/api'
 import { useStore } from 'vuex'
-import { useRoute, useRouter } from 'vue-router'
+import { useRoute } from 'vue-router'
 
 export default defineComponent({
 
@@ -23,10 +23,8 @@ export default defineComponent({
   },
 
   setup () {
-    const videos = ref([])
     const store = useStore()
     const route = useRoute()
-    const router = useRouter()
 
     // Set query string
     const query = ref(route.params.query?.toString() || 'blowjob')
@@ -34,20 +32,13 @@ export default defineComponent({
 
     // get videos
     API.fetchVideos(query.value, page.value).then(({ data }) => {
-      videos.value = data.videos
       store.dispatch('videos/setResultData', data)
     })
     .catch((error) => {
       console.log('An error occured, reason ::', error)
     })
-    
-    watch(() => page.value, (val) => {
-      if(val) {
-        router.push({ name: route.name?.toString(), query: { page: page.value.toString() } })
-      } else {
-        return
-      }
-    })
+
+    const videos = computed(() => store.state.videos.result.videos)
 
     return {
       videos
