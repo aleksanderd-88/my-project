@@ -1,25 +1,21 @@
 <template>
   <div>
-    <AppHeadline :headline="firstLetterToUpper(searchQuery)" />
     <AppVideos :videos="videos" />
   </div>
 </template>
 
 <script lang="ts">
-import AppHeadline from '@/components/atoms/AppHeadline.vue'
 import AppVideos from '@/components/molecules/AppVideos.vue'
 import API from '@/services/api'
 import { computed, defineComponent, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { useStore } from 'vuex'
-import { firstLetterToUpper } from '@/utils/useTextFormatter'
 
 export default defineComponent({
 
   name: 'SearchResultView',
 
   components: {
-    AppHeadline,
     AppVideos,
   },
 
@@ -42,8 +38,7 @@ export default defineComponent({
 
     return {
       searchQuery,
-      videos,
-      firstLetterToUpper
+      videos
     }
   }
 })

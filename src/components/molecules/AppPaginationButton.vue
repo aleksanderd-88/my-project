@@ -1,6 +1,6 @@
 <template>
   <button v-if="!isLoading" class="pagination-button" @click="showRelevantVideos()">
-    Show more relevant videos
+    {{ buttonLabel }}
   </button>
 </template>
 
@@ -23,6 +23,7 @@ export default defineComponent({
 
     // navigate to current route and set current page = (current page + 1)
     const showRelevantVideos = () => {
+      hasMoreVideos.value ? 
       router.push({ name: route.name?.toString(), 
         params: { 
           query: route.params.query?.toString()
@@ -31,13 +32,23 @@ export default defineComponent({
           page: page.value + 1
         } 
       })
+      :
+      router.push({ name: 'Home' })
     }
+
+    const hasMoreVideos = computed(() => store.state.videos.result.count > 0)
+
+    const buttonLabel = computed(() => {
+      return hasMoreVideos.value ? 'Show more relevant videos' : 'Show other videos'
+    })
 
     const isLoading = computed(() => store.state.isLoading)
 
     return {
       showRelevantVideos,
-      isLoading
+      isLoading,
+      hasMoreVideos,
+      buttonLabel
     }
   }
 })

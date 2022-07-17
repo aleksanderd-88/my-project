@@ -1,5 +1,7 @@
 <template>
   <div class="videos">
+    <AppHeadline :headline="firstLetterToUpper(searchQuery)" />
+
     <div class="videos__list">
       <AppVideoItem 
         v-for="video in videos" 
@@ -13,15 +15,23 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { computed, defineComponent } from 'vue'
 import AppPaginationButton from './AppPaginationButton.vue'
 import AppVideoItem from './AppVideoItem.vue'
+import { firstLetterToUpper } from '@/utils/useTextFormatter'
+import { useRoute } from 'vue-router'
+import AppHeadline from '@/components/atoms/AppHeadline.vue'
+import { useStore } from 'vuex'
 
 export default defineComponent({
   
   name: 'AppVideos',
 
-  components: { AppVideoItem, AppPaginationButton },
+  components: { 
+    AppVideoItem, 
+    AppPaginationButton,
+    AppHeadline
+  },
 
   props: {
     videos: {
@@ -32,7 +42,26 @@ export default defineComponent({
   },
 
   setup () {
-    return {}
+    const route = useRoute()
+    const store = useStore()
+
+    const hasMoreVideos = computed(() => store.state.videos.result.count > 0)
+    const hasRouteQueryParam =  computed(() => route.params.query?.toString())
+
+    const searchQuery = computed(() => {
+      if(hasMoreVideos.value && hasRouteQueryParam.value) {
+        return route.params.query?.toString() 
+      }
+      if(! hasMoreVideos.value) {
+        return 'No more videos'
+      }
+      return 'Popular videos'
+    })
+
+    return {
+      firstLetterToUpper,
+      searchQuery
+    }
   }
 })
 </script>
