@@ -25,7 +25,11 @@ export default defineComponent({
     const showRelevantVideos = () => {
       hasMoreVideos.value ? 
       router.push({ name: route.name?.toString(), 
+        // **
+        // Include route params when paginating in different routes
+        // **
         params: { 
+          id: route.params.id?.toString(),
           query: route.params.query?.toString()
         }, 
         query: { 
