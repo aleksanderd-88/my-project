@@ -1,6 +1,6 @@
 <template>
   <div class="video-item">
-    <img :src="imageURL" alt="Thumbnail" class="video-item__thumbnail">
+    <img :src="imageURL" alt="Thumbnail" class="video-item__thumbnail" @click.self="playVideo(video.id)">
 
     <section class="video-item__details">
       <p class="video-item__title">
@@ -13,6 +13,7 @@
 <script lang="ts">
 import { computed, defineComponent } from 'vue'
 import { firstLetterToUpper } from '@/utils/useTextFormatter'
+import { useRouter } from 'vue-router'
 
 export default defineComponent({
 
@@ -27,14 +28,25 @@ export default defineComponent({
   },
 
   setup (props) {
-
+    const router = useRouter()
+    
     const imageURL = computed((): string => props.video?.default_thumb.src)
     const videoTitle = computed((): string => props.video?.title)
     const titleFormatted = firstLetterToUpper(videoTitle.value)
 
+    const playVideo = (id: string) => {
+      router.push({
+        name: 'VideoPlayerView',
+        params: {
+          id: id.toString()
+        }
+      })
+    }
+
     return {
       imageURL,
-      titleFormatted
+      titleFormatted,
+      playVideo
     }
   }
 })
@@ -43,6 +55,7 @@ export default defineComponent({
 <style lang="scss" scoped>
   .video-item {
     &__thumbnail {
+      cursor: pointer;
       border-radius: 2px;
     }
 

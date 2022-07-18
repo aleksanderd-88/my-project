@@ -13,6 +13,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/:query?/:page?',
     name: 'SearchResult',
     component: () => import(/* webpackChunkName: "searchResult" */ '@/pages/SearchResultView.vue')
+  },
+  {
+    path: '/video/:id?',
+    name: 'VideoPlayerView',
+    component: () => import(/* webpackChunkName: "VideoPlayer" */ '@/pages/VideoPlayerView.vue')
   }
 ]
 

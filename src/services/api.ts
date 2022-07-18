@@ -21,5 +21,8 @@ client.interceptors.response.use(res => {
 export default {
   fetchVideos(query: string, page = 1, perPage = 100): Promise<AxiosResponse> {
     return client.get(`/video/search/?query=${query}&page=${page}&per_page=${perPage}`)
+  },
+  fetchOneVideo(id: string): Promise<AxiosResponse> {
+    return client.get(`/video/id/?id=${id}`)
   }
 }
