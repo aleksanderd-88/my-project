@@ -38,10 +38,15 @@ export default defineComponent({
       type: Array,
       required: true,
       default: () => ([])
+    },
+
+    headline: {
+      type: String,
+      default: null
     }
   },
 
-  setup () {
+  setup (props) {
     const route = useRoute()
     const store = useStore()
 
@@ -49,6 +54,9 @@ export default defineComponent({
     const hasRouteQueryParam =  computed(() => route.params.query?.toString())
 
     const searchQuery = computed(() => {
+      if(props.headline) {
+        return props.headline
+      }
       if(hasMoreVideos.value && hasRouteQueryParam.value) {
         return route.params.query?.toString() 
       }
