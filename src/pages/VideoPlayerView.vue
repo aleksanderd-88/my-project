@@ -21,6 +21,21 @@
           {{ getDateInMonths(get(video, 'added', '')) }}
         </p>
       </section>
+
+    </section>
+
+    <section class="video__categories">
+      <p class="video__categories-title">Categories</p>
+
+      <section class="video__categories-list">
+        <router-link 
+          class="video__categories-item" 
+          v-for="(keyword, idx) in keywordsList" :key="idx"
+          :to="{ name: 'SearchResult', params: { query: keyword.trimLeft().toString().toLowerCase() } }" 
+          >
+          {{ keyword }}
+        </router-link>
+      </section>
     </section>
 
     <AppVideos :videos="videos" headline="Related videos" />
@@ -54,10 +69,11 @@ export default defineComponent({
 
     //**
     // Retrieve first keyword from `keywords` prop
-    // Use this to display related videos
+    // Use this to display related videos and create tags
     //**
 
     const relatedKeyword = ref('')
+    const keywordsList = ref<string[]>()
 
     API.fetchOneVideo(id.value).then(({ data }) => {
       if(!data) {
@@ -65,6 +81,11 @@ export default defineComponent({
       }
       video.value = data
       relatedKeyword.value = data.keywords?.split(',')[0].trim()
+
+      keywordsList.value = data.keywords?.split(',').filter((k: string) => {
+        if(k === '' || k === ' ') return
+       return k.trimLeft()
+      })
 
       // #1 - if keyword results in an empty string
       if(relatedKeyword.value.split(',').some(k => k === '')) {
@@ -109,7 +130,8 @@ export default defineComponent({
       videos,
       firstLetterToUpper,
       getDateInMonths,
-      get
+      get,
+      keywordsList
     }
   }
 })
@@ -128,6 +150,7 @@ export default defineComponent({
 
     &__description {
       padding: .5em 0;
+
       &-title {
         font-size: 1em;
         font-weight: 600;
@@ -139,6 +162,41 @@ export default defineComponent({
         align-items: center;
         gap: .5em;
         font-size: .9em;
+      }
+    }
+
+    &__categories {
+      border-top: 1px solid #ccc;
+      padding-top: 1em;
+
+      &-title {
+        font-size: .9em;
+        font-weight: 600;
+      }
+
+      &-list {
+        display: flex;
+        gap: .3em;
+        margin-top: .5em;
+        width: 100%;
+        overflow-x: auto;
+        padding-bottom: .5em;
+
+        @media screen and (min-width: 990px) {
+          overflow-x: unset;
+          max-width: 85%;
+          flex-wrap: wrap;
+        }
+      }
+
+      &-item {
+        flex: 0 0 auto;
+        text-decoration: none;
+        font-size: .8em;
+        padding: 10px 20px;
+        background-color: #222;
+        color: #fff;
+        border-radius: 10px;
       }
     }
   }
